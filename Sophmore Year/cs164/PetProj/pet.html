@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Woodstock</title>
+    <style>
+      img {
+        width: 500px;
+        height: 500px;
+        text-align: center;
+      }
+      button {
+        width: 50 px;
+        height: 50 px;
+      }
+    </style>
+  </head>
+  <body>
+    <img id="pet" src="img/woodstock.jpg"></img>
+    <br>
+    <button id="eat" onclick="eat()">Eat</button>
+    <button id="sleep" onclick="rest()">Sleep</button>
+    <button id="gutiar" onclick="play()">Play</button>
+    <button id="choice" onClick = "choice()">Ask Woodstock what he wants to do</button>
+    <br>
+    <textarea id="output" rows="4" cols="55"></textarea>
+    <br>
+    <a href="about.html">about project</a>
+  </body>
+  <script>
+    var sleep = setTimeout(sleep, 15000);
+    var hunger = 0;
+    var fun = 0;
+    var love = 0;
+    var alive = true;
+
+    function eat() {
+      stop();
+      start();
+      fun = 0;
+      hunger += 1;
+      if(hunger == 1 & alive == true) {
+        love += 1;
+        document.getElementById("pet").src = "img/eating.jpg";
+        output.value = "";
+      }
+      else if(hunger == 2 & alive == true) {
+        love += 1;
+        var img = document.getElementById("pet");
+        document.getElementById("pet").src = "img/eating.jpg";
+        output.value = "";
+      }
+      else if(hunger == 3 & alive == true) {
+        love += 1;
+        var img = document.getElementById("pet");
+        document.getElementById("pet").src = "img/eating.jpg";
+        output.value = "";
+        }
+      else if(hunger == 4 & alive == true) {
+        love += 1;
+        var img = document.getElementById("pet");
+        document.getElementById("pet").src = "img/eating.jpg";
+        output.value = "Woodstock is full";
+      }
+      else if(hunger == 5 & alive == true) {
+        output.value = "Woodstock can not eat anymore";
+      }
+      else if(hunger == 6 & alive == true) {
+        output.value = "Woodstock has died from overeating";
+        death();
+      }
+    }
+
+    function play() {
+      stop();
+      start();
+      if(love >= 10 & alive == true) {
+        hunger = 0;
+        fun = 0;
+        document.getElementById("pet").src = "img/happy.jpg";
+        output.value = "";
+      }
+      else if(love < 10  & alive == true) {
+        var c = Math.floor(Math.random() * 5) + 1;
+        if (c == 1) {
+          document.getElementById("pet").src = "img/guitar.jpg";
+          output.value = "Woodstock loves playing gutiar.";
+          love += 1;
+          fun += 1;
+        }
+        else if (c == 2) {
+          document.getElementById("pet").src = "img/play.jpg";
+          output.value = "Woodstock plays with Snoopy."
+          love += 1;
+        }
+        else if (c == 3) {
+          document.getElementById("pet").src = "img/music.jpg";
+          output.value = "Woodstock loves music!"
+          love += 1;
+          fun += 1;
+        }
+        else if (c == 4) {
+          document.getElementById("pet").src = "img/walking.jpg";
+          output.value = "Woodstock went for a walk."
+          love += 1;
+        }
+        else if (c == 5) {
+          document.getElementById("pet").src = "img/camping.jpg";
+          output.value = "Woodstock went on an adventure!"
+          love += 1;
+          fun += 1;
+        }
+      }
+    }
+
+    function rest() {
+      if(alive == true) {
+        var img = document.getElementById("pet").src = "img/sleeping.jpeg";
+        output.value = "Woodstock fell asleep";
+        hunger = 0;
+        fun = 0;
+        love = 0;
+        sleep = setTimeout(rest, 15000);
+      }
+    }
+
+    function choice() {
+      stop();
+      start();
+      var rnd = Math.floor(Math.random() * 3) + 1;
+      if(rnd == 1 & hunger <= 3  & alive == true) {
+        eat();
+      }
+      else if(rnd == 2 & fun < 1  & alive == true) {
+        play();
+      }
+      else if(rnd == 3 & fun < 1  & alive == true) {
+        rest();
+      }
+    }
+
+    function death(){
+      alive = false;
+      document.getElementById("pet").src = "img/bored.gif";
+    }
+
+    function start(){
+      sleep = setTimeout(rest, 15000);
+    }
+
+    function stop(){
+      clearTimeout(sleep);
+    }
+    </script>
+</html>

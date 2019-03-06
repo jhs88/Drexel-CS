@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chess</title>
+    <style>
+      td {
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px
+      }
+    </style>
+    <script>
+      function movePiece() {
+        var move = document.getElementById("move").value;
+        var m1 = move.substring(0,2);
+        var m2 = move.substring(2,4);
+        document.getElementById(m2).innerHTML = document.getElementById(m1).innerHTML;
+        document.getElementById(m1).innerHTML = "";
+      }
+    </script>
+  </head>
+  <body>
+    <table id="chessboard" border="1px">
+        <tbody>
+            <tr>
+                <td id="a1">&#9820;</td>
+                <td id="b1" style="background-color:#808;">&#9822;</td>
+                <td id="c1">&#9821;</td>
+                <td id="d1" style="background-color:#808;">&#9819;</td>
+                <td id="e1">&#9818;</td>
+                <td id="f1" style="background-color:#808;">&#9821;</td>
+                <td id="g1">&#9822;</td>
+                <td id="h1"style="background-color:#808;">&#9820;</td>
+            </tr>
+            <tr>
+                <td id="a2" style="background-color:#808;">&#9823;</td>
+                <td id="b2">&#9823;</td>
+                <td id="c2" style="background-color:#808;">&#9823;</td>
+                <td id="d2">&#9823;</td>
+                <td id="e2"style="background-color:#808;">&#9823;</td>
+                <td id="f2">&#9823;</td>
+                <td id="g2"style="background-color:#808;">&#9823;</td>
+                <td id="h2">&#9823;</td>
+            </tr>
+            <tr>
+                <td id="a3"></td>
+                <td id="b3" style="background-color:#808;"></td>
+                <td id="c3" rowspan=""></td>
+                <td id="d3" style="background-color:#808;"></td>
+                <td id="e3"></td>
+                <td id="f3" style="background-color:#808;"></td>
+                <td id="g3"></td>
+                <td id="h3"style="background-color:#808;"></td>
+            </tr>
+            <tr>
+                <td id="a4" style="background-color:#808;"></td>
+                <td id="b4"></td>
+                <td id="c4" style="background-color:#808;"></td>
+                <td id="d4"></td>
+                <td id="e4" style="background-color:#808;"></td>
+                <td id="f4"></td>
+                <td id="g4"style="background-color:#808;"></td>
+                <td id="h4"></td>
+            </tr>
+            <tr>
+                <td id="a5"></td>
+                <td id="b5" style="background-color:#808;"></td>
+                <td id="c5"></td>
+                <td id="d5" style="background-color:#808;"></td>
+                <td id="e5"></td>
+                <td id="f5" style="background-color:#808;"></td>
+                <td id="g5"></td>
+                <td id="h5"style="background-color:#808;"></td>
+            </tr>
+            <tr>
+                <td id="a6" style="background-color:#808;"></td>
+                <td id="b6"></td>
+                <td id="c6"style="background-color:#808;"></td>
+                <td id="d6"></td>
+                <td id="e6" style="background-color:#808;"></td>
+                <td id="f6"></td>
+                <td id="g5" style="background-color:#808;"></td>
+                <td id="h6"></td>
+            </tr>
+            <tr>
+                <td id="a7">&#9817;</td>
+                <td id="b7" style="background-color:#808;">&#9817;</td>
+                <td id="c7">&#9817;</td>
+                <td id="d7" style="background-color:#808;">&#9817;</td>
+                <td id="e7">&#9817;</td>
+                <td id="f7" style="background-color:#808;">&#9817;</td>
+                <td id="g7">&#9817;</td>
+                <td id="h7" style="background-color:#808;">&#9817;</td>
+            </tr>
+            <tr>
+                <td id="a8" style="background-color:#808;">&#9814;</td>
+                <td id="b8">&#9816;</td>
+                <td id="c8" style="background-color:#808;">&#9815;</td>
+                <td id="d8">&#9812;</td>
+                <td id="e8" style="background-color:#808;">&#9813;</td>
+                <td id="f8">&#9815;</td>
+                <td id="g8" style="background-color:#808;">&#9816;</td>
+                <td id="h8">&#9814;</td>
+            </tr>
+        </tbody>
+    </table>
+    <input type="text" id="move"></input>
+    <button onclick="movePiece()">Move</button>
+  </body>
+</html>
