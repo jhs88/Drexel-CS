@@ -34,7 +34,7 @@ def main():
     blocks.append(Block(360,360))
     score = Text(50,50,"Score:",0)
     drawables.append(score)
-    ball = Ball(20,400)
+    ball = Ball(20,400,True)
     drawables.append(ball)
 
     # Gravity Vars

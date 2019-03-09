@@ -7,7 +7,7 @@ from drawable import *
 # Ball is a object that inherits Drawable
 # It draws a red ball on the surface
 class Ball(Drawable):
-    def __init__(self,x=0,y=0,visible=True,color=(255,0,0),radius=8):
+    def __init__(self,x,y,visible,color=(255,0,0),radius=8):
         super().__init__(x,y,visible)
         self.__color = color
         self.__rad = radius
@@ -16,7 +16,7 @@ class Ball(Drawable):
         return (self.__x, self.__y)
 
     def getVis(self):
-        return self.__vis
+        return self.__visible
 
     def setLoc(self,p):
         self.__x = p[0]
