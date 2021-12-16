@@ -1,0 +1,87 @@
+2.31):
+	.text
+	fib:
+		bgt 	$a0, 1, fib_recurse
+		move 	$v0, $a0
+		jr 	$ra
+	fib_recurse:
+		sub 	$sp, $sp, 12
+		sw	$ra, 0($sp) 	# save $ra
+
+		sw	$a0, 4($sp)	# save n
+		add	$a0, $a0, -1	# n - 1 
+		jal	fib
+		lw	$a0, 4($sp)	# restore n
+		sw	$v0, 8($sp)	# save fib(n-1)
+
+		add	$a0, $a0, -2	# n - 2
+		jal 	fib
+
+		lw	$t0, 8($sp)	# restore fib(n-1)
+		add	$v0, $t0, $v0	# return value
+
+		lw	$ra, 0($sp)	# restore $ra
+		add	$sp, $sp, 12	# break down stack
+		js 	$ra
+
+2.34):
+
+f:
+	addi 	$sp, $sp, -4
+	sw	$ra, 8($sp)	# save $ra
+	sw 	$s1, 4($sp)	# save $s1
+	sw 	$s1, 0($sp)	# save $s1
+	
+	move	$s1, $a2	# c = $a2
+	move	$s0, $a3	# d = $s0
+	jal 	func
+	
+	move 	$a0, $v0
+	add 	$a1, $s0, $s1	# b = d + c
+	jal 	func 
+
+	lw 	$ra, 8($sp)	# restore $ra
+	lw 	$s1, 4($sp)	# restore $s1
+	lw	$s0, 0($sp)	# restore $s0
+	addi	$sp, $sp, 12	# pop 2	
+	jr $ra
+
+3):
+
+int max(int *arr, int n)
+{
+    int i;
+    int max = arr[0];
+
+    for (i = 1; i < n; i++)
+        if (arr[i] > max)
+            max = arr[i];   
+    return max;
+}
+
+max:
+	li 	$t0, 0
+	li 	$t1, 0
+	li 	$t2, 0
+	li 	$t3, 0 		# max value 
+	
+	mul 	$a3, $a3, 4
+	printloop:
+		bge 	$t0, $a3, endprint
+		add 	$t1, $t0, $s0
+		lw 	$t2, 0($t1)
+		bgt 	$t3, $t2, else 	# compare element to max value
+		move 	$t3, $t2
+	else:  
+		addi 	$t0, $t0, 4
+		j 	printloop
+	endprint:			# Print maximum element  
+		la 	$a0, maximum
+		li 	$v0, 4
+		syscall
+		move 	$t8, $t3 	# save to calculate the avg
+		move 	$a0, $t3
+		li 	$v0, 1
+		syscall
+
+	jr $ra

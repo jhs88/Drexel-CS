@@ -1,0 +1,24 @@
+
+sqlite3 workhard.db
+
+CREATE TABLE food (
+ uid INTEGER PRIMARY KEY,
+ name TEXT NOT NULL,
+ day CHAR(2) NOT NULL,
+ week INTEGER NOT NULL, 
+ type CHAR(1) NOT NULL,
+ desc TEXT,
+ calories INTEGER NOT NULL,
+ user_id INTEGER,
+ FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+.mode csv
+.import dev/workhard.csv food
+
+CREATE TABLE users (
+    name TEXT NOT NULL,
+    username TEXT NOT NULL,
+    encrypted_password TEXT NOT NULL,
+    user_id INTEGER PRIMARY KEY
+);

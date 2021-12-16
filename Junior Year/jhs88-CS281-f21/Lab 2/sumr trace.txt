@@ -1,0 +1,132 @@
+[00400024] 23bdfff8  addi $29, $29, -8        ; 14: sub $sp,$sp,8 # push stack 
+    PC = 400024
+
+[00400028] afbf0000  sw $31, 0($29)           ; 15: sw $ra,0($sp) # save return address 
+    PC = 400028
+    R29 [sp] = 7FFFF510
+
+[0040002c] 3c011001  lui $1, 4097 [A]         ; 18: la $a0,A # address of A 
+    PC = 40002C
+
+[00400030] 34240000  ori $4, $1, 0 [A]        
+    PC = 400030
+    R1 [at] = 10010000
+
+[00400034] 3c011001  lui $1, 4097 [n]         ; 19: la $a1,n # address of n 
+    PC = 400034
+    R4 [a0] = 10010000
+
+[00400038] 34250028  ori $5, $1, 40 [n]   
+    PC       = 400038
+
+[0040003c] 8ca50000  lw $5, 0($5)             ; 20: lw $a1,0($a1) # load value of n 
+    PC       = 40003c
+    R5  [a1] = 10010028
+
+[00400040] 0c10001c  jal 0x00400070 [sumr]    ; 21: jal sumr # call sumr function 
+    PC       = 400040
+    R5  [a1] = a
+
+[00400070] 34080001  ori $8, $0, 1            ; 53: li $t0, 1
+    PC       = 400070
+    R31 [ra] = 400044
+
+[00400074] 14a80004  bne $5, $8, 16 [rec-0x00400074]; 54: bne $a1, $t0, rec # if (n > 1) then recurse
+    PC       = 400074
+    R8  [t0] = 1
+
+[00400084] 23bdfff4  addi $29, $29, -12       ; 60: sub $sp,$sp,12 # push stack 
+    PC       = 400084
+
+[00400088] afbf0000  sw $31, 0($29)           ; 61: sw $ra,0($sp) # save $ra 
+    PC       = 400088
+    R29 [sp] = 7ffff504
+
+[0040008c] afa40004  sw $4, 4($29)            ; 62: sw $a0,4($sp) # save argument registers 
+    PC       = 40008c
+
+[00400090] afa50008  sw $5, 8($29)            ; 63: sw $a1,8($sp) 
+    PC       = 400090
+
+[00400094] 20840004  addi $4, $4, 4           ; 65: addi $a0,$a0,4 # point to next element in
+    PC       = 400094
+
+[00400098] 20a5ffff  addi $5, $5, -1          ; 66: addi $a1,$a1,-1 # n = n - 1 
+    PC       = 400098
+    R4  [a0] = 10010004
+
+[0040009c] 0c10001c  jal 0x00400070 [sumr]    ; 67: jal sumr # recursively call sumr 
+    PC       = 40009c
+    R5  [a1] = 9
+
+Recuruse same loop until:
+
+[004000a0] 8fa40004  lw $4, 4($29)            ; 69: lw $a0, 4($sp) # restore $a0 to original address of A 
+    PC       = 4000a0
+    R1  [at] = 10010000
+    R2  [v0] = a
+    R4  [a0] = 10010024
+    R5  [a1] = 1
+    R6  [a2] = 7ffff524
+    R8  [t0] = a
+    R28 [gp] = 10008000
+    R29 [sp] = 7ffff4a4
+    R31 [ra] = 4000a0
+
+[004000a4] 8c880000  lw $8, 0($4)             ; 70: lw $t0, 0($a0) # load A[0] 
+    PC       = 4000a4
+    R4  [a0] = 10010020
+
+[004000a8] 00481020  add $2, $2, $8           ; 71: add $v0,$v0,$t0 # s = s + sumr(A+4,n-1) 
+    PC       = 4000a8
+    R8  [t0] = 9
+
+[004000ac] 8fbf0000  lw $31, 0($29)           ; 73: lw $ra, 0($sp) # restore $ra 
+    PC       = 4000ac
+    R2  [v0] = 13
+
+[004000b0] 8fa50008  lw $5, 8($29)            ; 74: lw $a1, 8($sp) 
+    PC       = 4000b0
+
+[004000b4] 23bd000c  addi $29, $29, 12        ; 75: add $sp, $sp, 12 # pop stack 
+    PC       = 4000b4
+    R5  [a1] = 2
+
+[004000b8] 03e00008  jr $31                   ; 76: jr $ra # return to calling function 
+    PC       = 4000b8
+    R29 [sp] = 7ffff4b0
+
+Return back to line 69 and recurse until:
+    PC       = 400044
+    R1  [at] = 10010000
+    R2  [v0] = 37
+    R4  [a0] = 10010000
+    R5  [a1] = a
+    R6  [a2] = 7ffff524
+    R8  [t0] = 1
+    R28 [gp] = 10008000
+    R29 [sp] = 7ffff510
+    R31 [ra] = 400044
+
+Then it grabs data for the print to the console and prints the sum of the array
+
+Data:
+    [10010000]    00000001  00000002  00000003  00000004    . . . . . . . . . . . . . . . . 
+    [10010010]    00000005  00000006  00000007  00000008    . . . . . . . . . . . . . . . . 
+    [10010020]    00000009  0000000a  0000000a  20656854    . . . . . . . . . . . . T h e   
+    [10010030]    206d7573  7420666f  65206568  656d656c    s u m   o f   t h e   e l e m e 
+    [10010040]    2073746e  41206e69  00203d20  00000000    n t s   i n   A   =   . . . . . 
+
+Console:
+    "The sum of the elements in A = 55"
+
+    PC       = 400064
+    R1  [at] = 10010000
+    R2  [v0] = 1
+    R4  [a0] = 37
+    R5  [a1] = a
+    R6  [a2] = 7ffff524
+    R8  [t0] = 1
+    R28 [gp] = 10008000
+    R29 [sp] = 7ffff510
+    R31 [ra] = 4000448

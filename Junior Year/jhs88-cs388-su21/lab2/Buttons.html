@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="iphone.css"/>
+		<meta name="viewport" content="width=device-width, user-scalable=no"/>
+		<script>
+ 			var bikeArr=new
+			Array("Bike.jpg","bike1.jpg","Bike2.jpg","Bike3.jpg","Bike4.jpg");
+		</script>
+	</head>
+	<body onload="initBody()">
+		<header class="secondary"> Reserve your bike</header>
+		<button class="back"
+			onClick="location.href='index.html';">Back</button>
+		<div id="buttons">
+			<button id="alertButton"
+				onClick="alert('weclome!');">Alert</button>
+			<button id="promptButton"
+				onClick="promptButtonClicked();">Prompt</button>
+			<button id="confirmationButton"
+				onClick="confirmButtonClicked();">Confirm</button>
+			<button id="changeButton"
+				onClick="changeButtonClicked();">Change bike</button>
+		</div>
+
+		<div id="content">
+			<img id="bikeImg" src="">
+			<p id="choicelist">
+			<ul id="orderedBike"> </ul>
+		</div>
+		<script>
+			function promptButtonClicked() {
+
+				/*Prompt displays a message and returns a string 
+				depending on what the user has entered. It can be
+				used for simple input. We stored the
+				returned string in a variable.*/
+
+				var destination=prompt("Where would you like to ride?");
+
+				//if the user entered a non-empty string executes the following
+
+				if(destination!="") {
+
+					/*retrieve the element named choicelist from the DOM*/
+
+					var p=document.getElementById("choicelist");
+
+					/*set its innerHTML attribute*/
+
+					p.innerHTML="Here is a summary of your choices";
+
+					/*add your code to create a brand new element and sets
+					its innerHTML value. Note that it is not 
+					yet inserted in the DOM.*/
+
+					var l="<li>" + destination + "</li>";
+
+					/*add your code Retrieve an element from the DOM. 
+					We then add our new element as a child to this element.*/
+
+					var c = document.getElementById("orderedBike").innerHTML;
+					document.getElementById("orderedBike").innerHTML = c + l;
+				}
+			}
+
+			function confirmButtonClicked() {
+			
+				/*Confirm displays a message and returns true 
+				if OK is clicked and a false if Cancel is clicked. 
+				You might use this for simple input */ 
+				var bool=confirm("Are you sure?");
+			
+				/*if the user clicked ok execute the following*/
+				if(bool==true){
+				
+					/*add your code to retrieve the <img> object 
+					from the DOM and set its src attribute*/
+				
+					var img = document.getElementById("bikeImg");
+					img.src = "img/bike1.jpg";
+
+					/*add your code to create a new <p> element 
+					and set its content */ 
+
+					var p = "<p>You are bike ready!</p>";
+
+					/*retrieve the <div> element with id= “content” 
+					and add to it the new<p> element*/
+
+					c = document.getElementById("content").innerHTML; 	
+					document.getElementById("content").innerHTML = c + p; 	
+					document.getElementById("changeButton").style.visibility=
+						"visible";
+				} 
+			}
+			
+			function initBody() {
+				// retrieve the changeButton element from the DOM and hide it
+				document.getElementById("changeButton").style.visibility="hidden";
+			}
+
+			function changeButtonClicked() {
+				var r = Math.floor(Math.random() * bikeArr.length);
+				var i = document.getElementById("bikeImg");
+				i.src = "img/" + bikeArr[r];
+			}	
+		</script>
+	</body>
+</html>

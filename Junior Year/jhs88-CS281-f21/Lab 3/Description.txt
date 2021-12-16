@@ -1,0 +1,7 @@
+Joseph Scherreik
+CS 281
+Lab 3
+
+For testing I took a look at the half adder, full adder, and 4x1 multiplexor.
+I imported the files and looked at the simulation waveforms for each one.
+Attached are the screen shot of half adder and the files for running a 4x1 multiplexor.

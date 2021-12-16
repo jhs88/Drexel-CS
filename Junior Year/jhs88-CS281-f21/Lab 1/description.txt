@@ -1,0 +1,8 @@
+Joseph Scherreik
+CS 281
+Lab 1
+
+"console screenshot.PNG" contains a screenshot of the output of "sum.asm" in QtSpim
+"sum trace.txt" is a trace of the main function of "sum.asm"
+    Each trace line has its machine code and instruction
+    Underneath each trace are the changes to the registery and stack for that instruction 

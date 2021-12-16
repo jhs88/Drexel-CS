@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> BIKE DREXEL </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script>
+		$(document).on("pageinit", "#bicycles", function () {
+			$(function () {
+				$.getJSON('data.json', function (data) {
+					var li = '';
+					$.each(data.bikes, function (i, bike) {
+						li += '<li id="' + bike.id + '"> <a href="#" class="ui-link-inherit" onclick="incrementValue()">'
+							+ '<img src="img/' + bike.image + '">'
+							+ '<h3 class="ui-li-heading">' + bike.name + '</h3>'
+							+ '<p id="available" class="ui-li-aside">' + bike.available + '</p>'
+							+ '</a></li>';
+						console.log(li);
+					});
+					$("#rentals").append(li);
+					$("#rentals").listview("refresh");
+				});
+			});
+		});
+		function incrementValue() {
+			var value = parseInt(document.getElementById('available').value, 10);
+			value = isNaN(value) ? 0 : value;
+			value--;
+			document.getElementById('available').value = value;
+		}
+	</script>
+</head>
+
+<body>
+	<div data-role="page" data-theme="a" id="welcome">
+		<div data-role="header">
+			<h1>Bike Drexel</h1>
+		</div><!-- /header -->
+		<div data-role="content">
+			<!-- Drexel image -->
+			<img id="Drexel" src="img/DrexelU.jpg" width="320" />
+			<!-- P stands for paragraph -->
+			<p>We believe in bicycles! Everything you need to be a Drexel Cyclist.</p>
+
+			<ul data-role="listview" data-inset=”true” style="padding-bottom: 25px;">
+				<li><a href="#bicycles">Bicycles</a></li>
+				<li><a href="#collapsible">Collapsible</a></li>
+				<li><a href="">Link 3</a></li>
+				<li><a href="">Link 4</a></li>
+			</ul>
+			<!-- Navigation buttons -->
+			<nav id="main_nav">
+				<a data-role="button" href="#stores">Bike Stores </a>
+				<a data-role="button" href="#register">Register </a>
+				<a data-role="button" href="#ride">Go for a Ride</a>
+			</nav>
+
+			<div data-role="collapsible">
+				<h3>Section 1</h3>
+				<p>I'm the collapsible content for section 1</p>
+			</div>
+
+			<a href="#popupBasic" data-role="button" data-rel="popup">Open Popup</a>
+			<div data-role="popup" id="popupBasic">
+				<p>This is a completely basic popup, no options set.
+				<p>
+			</div>
+
+			<a href="#popupLogin" data-role="button" data-rel="popup">Open Popup</a>
+			<div data-role="popup" id="popupLogin" data-theme="a" class="ui-corner-all">
+				<form>
+					<div style="padding:10px 20px;">
+						<h3>Please sign in</h3>
+						<label for="un" class="ui-hidden-accessible">Username:</label>
+						<input type="text" name="user" id="un" value="" placeholder="username" data-theme="a" />
+
+						<label for="pw" class="ui-hidden-accessible">Password:</label>
+						<input type="password" name="pass" id="pw" value="" placeholder="password" data- theme="a" />
+
+						<button type="submit" data-theme="b">Sign in</button>
+					</div>
+				</form>
+			</div>
+
+			<a href="#popupPhoto" data-role="button" data-rel="popup">Open Popup</a>
+			<div data-role="popup" id="popupPhoto" data-overlay-theme="a" data-theme="d" data- corners="false">
+				<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow 
+					ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+				<img class="popphoto" src="img/bikes.jpg.png" alt="Students riding">
+			</div>
+
+			<p><a href="#popupInfo" data-rel="popup" data-transition="pop"
+					class="my-tooltip-btn ui-btn ui-alt-icon ui-nodisc-icon ui-btn-inline ui-icon-info ui-btn-icon-notext">
+					Learn more</a></p>
+			<div data-role="popup" id="popupInfo" class="ui-content" data-theme="a" style="max-width:350px;">Tooltip
+			</div>
+
+		</div><!-- /content -->
+
+		<div data-role="footer">
+			<div data-role="navbar">
+				<ul>
+					<li> <a href="#bicycles" data-icon="grid">Bicycles</a>
+					<li> <a href="#map" data-icon="info">Map</a>
+					<li> <a href="" data-icon="search">Search </a>
+				</ul>
+			</div>
+			<h4>CS530/338 Developing User Interfaces </h4>
+		</div>
+	</div><!-- /page -->
+
+	<div data-role="page" data-theme="a" id="stores">
+
+		<div data-role="header">
+			<a data-icon="back" data-rel="back" back-btn="true" href="#welcome">Back</a>
+			<h1 style="text-align: center;">Stores</h1>
+		</div><!-- /header -->
+
+		<div data-role="content">
+			<a href="#welcome" data-role="button" data-icon="home" data- iconpos="left">Home</a>
+		</div><!-- /content -->
+
+		<div data-role="footer">
+			<h4>Page Footer</h4>
+		</div><!-- /footer -->
+	</div><!-- /page -->
+
+	<div data-role="page" data-theme="a" id="register">
+
+		<div data-role="header">
+			<a data-icon="back" data-rel="back" back-btn="true" href="#welcome">Back</a>
+			<h1 style="text-align: center;">Register</h1>
+		</div><!-- /header -->
+
+		<div data-role="content">
+			<a href="" data-role="button" data-icon="delete" data- iconpos="right">Delete</a>
+		</div><!-- /content -->
+
+		<div data-role="footer">
+			<h4>Page Footer</h4>
+		</div><!-- /footer -->
+	</div><!-- /page -->
+
+	<div data-role="page" data-theme="a" id="ride">
+
+		<div data-role="header">
+			<a data-icon="back" data-rel="back" back-btn="true" href="#welcome">Back</a>
+			<h1 style="text-align: center;">Ride</h1>
+		</div><!-- /header -->
+
+		<div data-role="content">
+			<p>I'm second in the source order.</p>
+		</div><!-- /content -->
+
+		<div data-role="footer">
+			<h4>Page Footer</h4>
+		</div><!-- /footer -->
+	</div><!-- /page -->
+
+	<div data-role="page" data-theme="a" id="bicycles">
+		<div data-role="header">
+			<a data-icon="back" data-rel="back" back-btn="true" href="#welcome">Back</a>
+			<h1 style="text-align: center;">Ride</h1>
+		</div><!-- /header -->
+
+		<div data-role="content">
+			<ul id="rentals" data-role="listview">
+				<!-- injected with js-->
+			</ul>
+		</div><!-- /content -->
+
+		<div data-role="footer">
+			<h4>Page Footer</h4>
+		</div><!-- /footer -->
+	</div><!-- /page -->
+
+	<div data-role="page" data-theme="a" id="collapsible">
+		<div data-role="header">
+			<a data-icon="back" data-rel="back" back-btn="true" href="#welcome">Back</a>
+			<h1 style="text-align: center;">Ride</h1>
+		</div><!-- /header -->
+
+		<div data-role="collapsible-set" data-theme="c" data-content-theme="d">
+			<div data-role="collapsible">
+				<h3>Section 1</h3>
+				<p>I'm the collapsible content for section 1</p>
+			</div>
+			<div data-role="collapsible">
+				<h3>Section 2</h3>
+				<p>I'm the collapsible content for section 2</p>
+			</div>
+			<div data-role="collapsible">
+				<h3>Section 3</h3>
+				<p>I'm the collapsible content for section 3</p>
+			</div>
+		</div> <!-- collapsible-set -->
+	</div>
+</body>
+
+</html>

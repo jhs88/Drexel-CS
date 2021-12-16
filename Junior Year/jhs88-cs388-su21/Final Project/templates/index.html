@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% set active = "Home" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<section class="jumbotron">
+    <div class="text-center">
+        <h1 class="jumbotron-heading">A food tracker for a healther lifestyle</h1>
+        <p class="lead text-muted">
+            Do you want to live a healther lifestyle?<br> 
+            Has life and a busy schudle gotten in the way?<br>
+            We're here for you!
+        </p>
+        <p><img class="img-fluid" src="/img/homepage.jpg"></p>
+        <p>
+            <a href="/about" class="btn btn-secondary my-2 mr-2">What we are all about</a>
+            <a href="/create_user" class="btn btn-secondary my-2">Join Today!</a>
+        </p>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% set active = "Home" %}
+
+{% block title %}
+Meal History
+{% endblock %}
+
+{% block content %}
+
+<h1 style="text-align:center">Meal Calories Summary</h1>
+<h2>Week {{ session['week'] }}</h2>
+<a href="/back" class="btn btn-primary">Back</a>
+<a href="/next" class="btn btn-primary">Next</a>
+<canvas id="myChart" width="400" height="400"></canvas>
+<a href="/create_food" class="btn btn-primary">Add</a>
+
+<script>
+
+    function buildChart(data) {
+        var colors = [
+            "#F7464A", "#46BFBD", "#FDB45C", "#FEDCBA",
+            "#ABCDEF", "#DDDDDD", "#ABCABC", "#4169E1",
+            "#C71585", "#FF4500", "#FEDCBA", "#46BFBD"
+        ];
+
+        var s = m = t = w = th = f = sa = 0;        
+        for(var i = 0; i < data.length; i++) {
+            var calories = parseFloat(data[i].calories);
+            if (data[i].day == "S" ) {
+                s += calories;
+            } else if (data[i].day == "M") {
+                m += calories;
+            } else if (data[i].day == "T") {
+                t += calories;
+            } else if (data[i].day == "W") {
+                w += calories;
+            } else if (data[i].day == "TH") {
+                th += calories;
+            } else if (data[i].day == "F") {
+                f += calories;
+            } else if (data[i].day == "SA") {
+                sa += calories;
+            }
+        }
+        var set = [s,m,t,w,th,f,sa];
+
+        var chartData = {
+                labels: [
+                    "Sunday", "Monday", "Tuesday", "Wednesday",
+                    "Thursday", "Friday", "Saturday"
+                ],
+                datasets: [{
+                    data: set,
+                    backgroundColor: colors,
+                    borderColor: "#d3d3d3",
+                    borderRadius: 6,
+                    hoverOffset: 4
+                }]
+            };
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: chartData,
+            options: {
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: "bottom"
+                    }
+                }
+            }
+        });
+    }
+
+    function loadChart() {
+        $.get("api/myfood", function (data) {
+            buildChart(data);
+        });
+    }
+
+    $(function () {
+        loadChart();
+    });
+
+</script>
+
+{% endblock %}

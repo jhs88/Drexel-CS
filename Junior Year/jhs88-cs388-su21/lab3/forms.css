@@ -1,0 +1,59 @@
+label {
+    display: block;
+}
+
+input {
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.info {
+    text-align: center;
+}
+
+.info p {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-size: 15px;
+}
+
+form {
+    border-radius: 25px;
+    background: white;
+    padding: 25px; 
+    width: auto;
+    height: auto; 
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: left;
+    font-size: 15px;
+}
+
+input[type='submit'] {
+    /* Add more rules here */
+    width: 80px;
+    height: 30px;
+    margin: auto;
+    color: white;
+    /* font-size: auto; */
+    -webkit-border-image: url("img/blueButton.png") 0 14 0 14 stretch;
+}
+
+
+input:invalid {
+    /* insert your own styles for invalid form input */
+    border: 2px solid red;
+}
+
+input:valid { 
+    /* insert your own styles for valid form input */
+}
+
+input:required {
+    /* insert your own style to indicate a required form input */
+    border: 2px solid #07294D;
+    background-color: yellow;
+}

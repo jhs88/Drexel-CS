@@ -1,0 +1,44 @@
+{
+    "bikes": [
+        {
+            "id": "b1",
+            "name": "Sixthreezero Around The Block Women's Single Speed Cruiser Bicycle Coral w/ Black Seat/Grips",
+            "wheels": 2,
+            "size": 26,
+            "motor": "No",
+            "folding": "No",
+            "image": "bikeIcon.jpg",
+            "available": 2
+        },
+        {
+            "id": "b2",
+            "name": "Roadmaster 26 Men's Granite Peak Men's Bike",
+            "wheels": 2,
+            "size": 26,
+            "motor": "No",
+            "folding": "No",
+            "image": "bikeIcon1.jpg",
+            "available": 0
+        },
+        {
+            "id": "b3",
+            "name": "Fun 20 Inch Wheel Unicycle with Alloy Rim",
+            "wheels": 1,
+            "size": 20,
+            "motor": "No",
+            "folding": "No",
+            "image": "bikeIcon2.jpg",
+            "available": 7
+        },
+        {
+            "id": "b4",
+            "name": "Mongoose Dolomite Fat Tire Mountain Bike",
+            "wheels": 2,
+            "size": 26,
+            "motor": "No",
+            "folding": "No",
+            "image": "bikeIcon3.jpg",
+            "available": 3
+        }
+    ]
+}

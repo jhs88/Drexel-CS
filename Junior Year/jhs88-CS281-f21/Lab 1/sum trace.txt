@@ -1,0 +1,103 @@
+[00400024] 23bdfff8  addi $29, $29, -8        ; 6: sub $sp,$sp,8 # push stack to save registers
+    PC = 0040024
+    R31 [ra] = 400018
+
+[00400028] afbf0000  sw $31, 0($29)           ; 7: sw $ra,0($sp) # save return address 
+    PC = 400028
+    R29 [sp] = 7ffff4b0
+
+[0040002c] 34040004  ori $4, $0, 4            ; 10: li $a0,4 # a = 4 - li is a pseudo-instruction that loads a constant.
+    PC = 40002c
+
+[00400030] 34050003  ori $5, $0, 3            ; 11: li $a1,3 # b = 3 
+    PC = 400030
+    R4 [a0] = 4
+
+[00400034] 34060002  ori $6, $0, 2            ; 12: li $a2,2 # c = 2 
+    PC = 400034
+    R5 [a1] = 3
+
+[00400038] 34070001  ori $7, $0, 1            ; 13: li $a3,1 # d = 1 
+    PC = 400038
+    R5 [a2] = 2
+
+[0040003c] 0c10001b  jal 0x0040006c [sum]     ; 14: jal sum # call subroutine sum to compute a+b+c+d
+    PC = 40003c
+    R7 [a3] = 1
+
+[0040006c] 23bdfffc  addi $29, $29, -4        ; 50: sub $sp,$sp,4 # Push stack to create room to save register $s0
+    PC = 40006c
+    R31 [ra] = 400040
+
+[00400070] afb00000  sw $16, 0($29)           ; 51: sw $s0,0($sp) # save $s0 on stack 
+    PC = 400070
+    R29 [sp] = 7ffff4ac
+
+[00400074] 00854020  add $8, $4, $5           ; 55: add $t0,$a0,$a1 # a + b
+    PC = 400074
+
+[00400078] 00c74820  add $9, $6, $7           ; 56: add $t1,$a2,$a3 # c + d
+    PC = 400078
+    R8 [t0] = 7
+
+[0040007c] 01098020  add $16, $8, $9          ; 57: add $s0,$t0,$t1 # $s = $t0 + $t1 = a + b + c + d
+    PC = 40007c
+    R9 [t1] = 3
+
+[00400080] 02001020  add $2, $16, $0          ; 58: add $v0,$s0,$zero # return sum = s 
+    PC = 400080
+    R16 [s0] = a
+
+[00400084] 8fb00000  lw $16, 0($29)           ; 60: lw $s0,0($sp) # restore $s0 to value prior to function call
+    PC = 400084
+    R2 [v0] = a
+
+[00400088] 23bd0004  addi $29, $29, 4         ; 61: add $sp,$sp,4 # pop stack 
+    PC = 400088
+    R16 [s0] = 0
+
+[0040008c] 03e00008  jr $31                   ; 62: jr $ra # return to calling procedure
+    PC = 40008c
+    R29 [sp] = 7ffff4b0
+
+[00400040] afa20004  sw $2, 4($29)            ; 15: sw $v0,4($sp) # result returned in $v0 and stored on the stack
+    PC = 400040
+
+[00400044] 34020004  ori $2, $0, 4            ; 19: li $v0,4 # the argument to a system call is placed in register $v0
+    PC = 400044
+
+[00400048] 3c011001  lui $1, 4097 [str]       ; 21: la $a0,str # pseudo-instruction to load the address of the label str
+    PC = 400048
+    R2 [v0] = 4
+
+[0040004c] 34240000  ori $4, $1, 0 [str]
+    PC = 40004c
+    R1 [at] = 10010000
+
+[00400050] 0000000c  syscall                  ; 23: syscall # system call to print the string at address str
+    PC = 400050
+    R4 [a0] = 10010000
+
+[00400054] 34020001  ori $2, $0, 1            ; 25: li $v0,1 # The value 1 tells syscall to print an integer
+    PC = 400054
+
+[00400058] 8fa40004  lw $4, 4($29)            ; 26: lw $a0,4($sp) # Load the sum from the stack to register $a0
+    PC = 400058
+    R2 [v0] = 1
+
+[0040005c] 0000000c  syscall                  ; 27: syscall # System call to print the integer in register $a0
+    PC = 40005c
+    R4 [a0] = a
+
+[00400060] 8fbf0000  lw $31, 0($29)           ; 29: lw $ra,0($sp) # restore return address used to jump back to system
+    PC = 400060
+
+[00400064] 23bd0008  addi $29, $29, 8         ; 30: add $sp,$sp,8 # pop stack to prepare for the return to the system
+    PC = 400064
+    R31 [ra] = 400018
+
+[00400068] 03e00008  jr $31                   ; 31: jr $ra # [jump register] return to the system
+    PC = 400068
+    R29 [sp] = 7ffff4b8
+
+[00400018] 00000000  nop                      ; 189: nop 

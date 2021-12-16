@@ -1,0 +1,39 @@
+3.22) 0xC000000
+	binary: 00001100000000000000000000000000
+	sign bit: 0
+	exp bits: 00011000
+	exp as decimal: 24
+	exponent: 24-127 = -103
+	IEEE-754 Decimal: 1.0 * 2^-103 or 9.8608e-32
+
+3.23) 63.25
+	binary: 111111.01
+	sci notation: 1.11111101 * 2^5
+	sign bit: 0
+	exp bits: 127 + 5 = 132
+	exp as binary: 10000100
+	IEEE-754: 01000010011111010000000000000000
+
+3.24)
+	sign bit: 0
+	exp bits: 5 + 1023 = 1028
+	exp as binary: 10000000100
+	IEEE-754: 01000000010011111010000000000000
+
+3.29)	2.6125*10^1 = 26.125
+		binary: 0011010010101001
+	4.150390625*10^-1 = 0.4150390625
+		binary: 0.011010100111
+
+	Shift 2nd left to match exponents
+	1.1010001 * 2^4 + 0.00000110101001 * 2^4
+	
+	10 bit are reserved for mantissa.
+	Truncate teh second numer and use bits placement operation
+	on guard, round and sticky bit.
+	1.1010001 * 2^4 + 0.0000011010101 * 2^4 = 1.10101000101 * 2^4
+	
+	Round for 10bits and set in 16-bit format
+	0101010001110011
+	
+	

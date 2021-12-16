@@ -1,0 +1,8 @@
+Joseph Scherreik
+CS 281
+Lab 4
+
+For testing I took a look at the half adder, full adder, 4x1 multiplexor, and the alu.
+I imported the files and looked at the simulation waveforms for each one.
+Attached are the the required files to view the waveforms for 2 different 
+versions of the alu and 2 others for subtraction support and overflow support.

@@ -1,0 +1,35 @@
+2.24):
+	PC stored in address: 	0x2000 0000
+	Binary:			0010 0000 0000 0000 0000 0000 0000 0000
+
+	Each MIPS instruction is 32 bits
+	Jump instruction:
+		J Target where 6 Bit MSB's set for opcode
+		28 bit LSB's set to Target
+
+	In this expance our Target is 0x4000 0000
+	Stored in address: 	0x4000 0000
+	Binary:			0010 0000 0000 0000 0000 0000 0000 0000
+
+	Per instruction only fetch 28 bits of LSB's address 
+	28 bit LSB's of address: 00 0000 0000 0000 0000 0000 0000 0000
+		Not in rage of 0x4000 0000
+
+	So it isn't possible for Jump instruction to set PC at address 0x4000 0000
+	In BEQ instruction the Target is 16 bit. So again you cant set the PC to address 0x4000 0000
+
+2.40):
+	32 bit from 2.39: 	0010 0000 0000 0001 0100 1001 0010 0100
+	Hex:			0x2001 4924
+
+	Remove 4-MSB bit: 	0000 0000 0001 0100 1001 0010 0100
+	Sift right by 2 bits:	00 0000 0000 0101 0010 0100 1001
+	Hex:			0x0005249
+	
+	Single jump instruction: j 0x00005249
+
+2.42):
+	Yes you can use a single branch instruction
+	The branch addres range is 0x1FFDF004 - 0x2001F000
+		PC + 4 + 0x1FFFC = 0x2001 F000
+		PC + 4 - 0x20000 = 0x1FFD F004
