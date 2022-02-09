@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Server" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="ftpserver.Main" />
+    <module name="HW_3.main" />
+    <option name="PROGRAM_PARAMETERS" value="serverlog.txt 2121" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="ftpserver.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

@@ -1,0 +1,14 @@
+# Starting the sample FTP server
+docker run --rm -d -p 2121-2130:2121-2130 fclairamb/ftpserver
+
+# Download some file
+[ -f kitty.jpg ] || (curl -o kitty.jpg.tmp https://placekitten.com/2048/2048 && mv kitty.jpg.tmp kitty.jpg)
+
+# Upload it
+curl -v -T kitty.jpg ftp://test:test@localhost:2121/
+
+# Download it back
+curl ftp://test:test@localhost:2121/kitty.jpg -o kitty2.jpg
+
+# Compare it
+diff kitty.jpg kitty2.jpg

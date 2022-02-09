@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ftpserver.FTPserverTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-11-16T21:22:25" hostname="shiny" time="0.269">
+  <properties/>
+  <testcase name="port()" classname="ftpserver.FTPserverTest" time="0.269"/>
+  <system-out><![CDATA[220 Welcome to FTPServer
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

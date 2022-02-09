@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ftpclient.FTPclientTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-10-13T23:22:08" hostname="shiny" time="0.09">
+  <properties/>
+  <testcase name="test_port()" classname="ftpclient.FTPclientTest" time="0.09"/>
+  <system-out><![CDATA[220 ftpserver
+331 OK
+230 Password ok, continue
+User Connected
+200 PORT command successful
+Disconnected
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

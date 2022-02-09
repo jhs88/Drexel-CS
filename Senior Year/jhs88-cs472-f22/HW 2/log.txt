@@ -1,0 +1,14 @@
+13-10-2021 19:10:23 220 Welcome to CS472 FTP Server
+13-10-2021 19:10:23 331 Please specify the password.
+13-10-2021 19:10:23 230 Login successful.
+13-10-2021 19:20:03 220 ftpserver
+13-10-2021 19:20:04 331 OK
+13-10-2021 19:20:04 230 Password ok, continue
+13-10-2021 19:20:04 Disconnected
+13-10-2021 19:22:08 220 ftpserver
+13-10-2021 19:22:08 331 OK
+13-10-2021 19:22:08 230 Password ok, continue
+13-10-2021 19:22:08 Disconnected
+14-10-2021 23:54:03 Welcome to FTPclient!!
+Enter IP and port number in format "<ip> <port>". 
+

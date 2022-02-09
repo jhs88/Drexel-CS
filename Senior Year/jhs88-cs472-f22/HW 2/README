@@ -1,0 +1,41 @@
+Joseph Scherreik
+CS 472
+HW 2
+
+To run the program just start it inside of VS Code or IntelliJ.
+Main.class contains the main method for execution.
+FTPclientTest.java individually tests each command that is implemented.
+You could also compile it your own.
+
+kitty.jpg - file used for testing purposes
+log.txt - log from sample run
+Test Run.png - Screenshot of IntelliJ terminal running the test run.
+
+Questions:
+1.  The server and client validate by sending headers attached to some description
+    of what is going on. These are universally agreed and specified before hand. The
+    header codes tell weather something is successful or if there was an error. Then
+    the client or server will react accordingly to the code.
+
+    FTP validates the connection with several commands PASV/EPSV and
+    PORT/EPRT. The commands are groups together because the perform the
+    same task, they just implemented it differently. The ones that begin with
+    "E" are compatible with IPv6.
+
+    PASV/EPSV is sent from the client and it tells the server that it is responsible
+    for opening a new data port connection. The server then handles opening a port,
+    usually from some default specified. Finally it sends a message telling the client
+    what port it should open for the data port. This is how they validate each other and
+    makes sure they are right person.
+
+    PORT/EPRT is sent from the client and it tells the server that the client will be
+    responsible for specifying the data port. The server will look at what port is specified
+    and send a request telling the client its listening on the port specified. This is how they
+    validate each other and makes sure they are the right person.
+
+2.  The client does not directly know if it is sending the commands in the right order. It can
+    receive an error header, but it might not know what to do with it. Its up to the person creating
+    the client to give it the proper functionality based on FTP's RFC. It does not know if the sender
+    is trustworthy because FTP does not implement any encryption over the connection. If you want to
+    insure your client will be secure you should implement SFTP instead.
+
