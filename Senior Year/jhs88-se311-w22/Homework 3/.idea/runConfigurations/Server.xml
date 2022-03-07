@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Server" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="server.Main" />
+    <module name="Homework_3.main" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
